@@ -880,8 +880,11 @@
 		/obj/item/stack/sheet/metal/cyborg,
 		/obj/item/stack/rods/cyborg,
 		/obj/item/stack/sheet/glass/cyborg,
+		/obj/item/rsf/cyborg,
 		/obj/item/rsf/cyborg/parts,
-		/obj/item/rsf/cyborg/pistol)
+		/obj/item/rsf/cyborg/pistol,
+		/obj/item/rsf/cyborg/shotgun,
+		/obj/item/rsf/cyborg/rifle)
 	emag_modules = list(/obj/item/melee/transforming/energy/sword/cyborg) // todo: add illegal drug synthesizer or something
 	ratvar_modules = list(
 		/obj/item/clockwork/slab/cyborg,
