@@ -870,6 +870,25 @@
 		else
 			return FALSE
 	return ..()
+	
+// Manufacturer Bot - very, very poorly armed but can print a plethora of objects for humans; maybe roll Service into this and add a food synthesizer??
+
+/obj/item/robot_module/manufacturer
+	name = "Manufacturer"
+	basic_modules = list(
+		/obj/item/assembly/flash/cyborg,
+		/obj/item/stack/sheet/metal/cyborg,
+		/obj/item/stack/rods/cyborg,
+		/obj/item/stack/sheet/glass/cyborg,
+		/obj/item/rsf/cyborg/parts,
+		/obj/item/rsf/cyborg/pistol)
+	emag_modules = list(/obj/item/melee/transforming/energy/sword/cyborg) // todo: add illegal drug synthesizer or something
+	ratvar_modules = list(
+		/obj/item/clockwork/slab/cyborg,
+		/obj/item/clockwork/weapon/ratvarian_spear,
+		/obj/item/clockwork/replica_fabricator/cyborg)
+	moduleselect_icon = "standard"
+	hat_offset = -3
 
 /obj/item/robot_module/assaultron
 	name = "Assaultron"
