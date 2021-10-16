@@ -246,6 +246,89 @@ RSF
 			new /obj/item/ammo_box/c38(T)
 			use_matter(10, user)
 			
+// basic shotgun synth
+			
+/obj/item/rsf/cyborg/shotgun
+	name = "\improper Shotstick SynthTron v1.0"
+	desc = "A device which synthesizes a variety of simple shotguns using a robots onboard power supply."
+
+/obj/item/rsf/cyborg/shotgun/attack_self(mob/user)
+	playsound(src.loc, 'sound/effects/pop.ogg', 50, 0)
+	switch(mode)
+		if(3)
+			mode = 1
+			to_chat(user, "Changed dispensing mode to 'Single Shotgun'")
+		if(1)
+			mode = 2
+			to_chat(user, "Changed dispensing mode to 'Caravan Shotgun'")
+		if(2)
+			mode = 3
+			to_chat(user, "Changed dispensing mode to 'Hunting Shotgun'")
+
+/obj/item/rsf/cyborg/shotgun/afterattack(atom/A, mob/user, proximity)
+	. = ..()
+
+	var/turf/T = get_turf(A)
+	playsound(src.loc, 'sound/machines/click.ogg', 10, 1)
+	switch(mode)
+		if(1)
+			to_chat(user, "Dispensing Single Shotgun...")
+			new /obj/item/gun/ballistic/revolver/single_shotgun(T)
+			use_matter(100, user)
+		if(2)
+			to_chat(user, "Dispensing Caravan Shotgun...")
+			new /obj/item/gun/ballistic/revolver/caravan_shotgun(T)
+			use_matter(250, user)
+		if(3)
+			to_chat(user, "Dispensing Hunting Shotgun...")
+			new /obj/item/gun/ballistic/shotgun/hunting(T)
+			use_matter(600, user)
+
+// rifle synth
+
+/obj/item/rsf/cyborg/rifle
+	name = "\improper RobCo RifleMaker MK.I"
+	desc = "A complex device that can synthesize rifles and their magazines using a robots onboard power supply."
+
+/obj/item/rsf/cyborg/rifle/attack_self(mob/user)
+	playsound(src.loc, 'sound/effects/pop.ogg', 50, 0)
+	switch(mode)
+		if(4)
+			mode = 1
+			to_chat(user, "Changed dispensing mode to '5.56mm Hunting Rifle'")
+		if(1)
+			mode = 2
+			to_chat(user, "Changed dispensing mode to 'Small 5.56mm Magazine'")
+		if(2)
+			mode = 3
+			to_chat(user, "Changed dispensing mode to '7.62mm Bolt-Action Rifle'")
+		if(3)
+			mode = 4
+			to_chat(user, "Changed dispensing mode to '7.62mm Stripper Clip'")
+
+/obj/item/rsf/cyborg/rifle/afterattack(atom/A, mob/user, proximity)
+	. = ..()
+
+	var/turf/T = get_turf(A)
+	playsound(src.loc, 'sound/machines/click.ogg', 10, 1)
+	switch(mode)
+		if(1)
+			to_chat(user, "Dispensing 5.56mm Hunting Rifle...")
+			new /obj/item/gun/ballistic/rifle/mag/varmint(T)
+			use_matter(200, user)
+		if(2)
+			to_chat(user, "Dispensing Small 5.56mm Magazine...")
+			new /obj/item/ammo_box/magazine/m556/rifle/small(T)
+			use_matter(20, user)
+		if(3)
+			to_chat(user, "Dispensing 7.62mm Bolt-Action Rifle..")
+			new /obj/item/gun/ballistic/rifle/boltaction(T)
+			use_matter(500, user)
+		if(4)
+			to_chat(user, "Dispensing 7.62mm Stripper Clip...")
+			new /obj/item/ammo_box/magazine/garand308(T)
+			use_matter(20, user)
+			
 // crafting material synth
 			
 /obj/item/rsf/cyborg/parts
