@@ -891,6 +891,7 @@
 		/obj/item/rsf/cyborg/pistol,
 		/obj/item/rsf/cyborg/shotgun,
 		/obj/item/rsf/cyborg/rifle,
+		/obj/item/rsf/cyborg/ammo,
 		
 		/obj/item/borg/sight/meson,
 		/obj/item/construction/rcd/borg,
