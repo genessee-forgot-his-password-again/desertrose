@@ -594,7 +594,7 @@ as performing this in action() will cause the upgrade to end up in the borg inst
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "borg_BS_RPED"
 	require_module = TRUE
-	module_type = list(/obj/item/robot_module/engineering, /obj/item/robot_module/saboteur)
+	module_type = list(/obj/item/robot_module/engineering, /obj/item/robot_module/saboteur, /obj/item/robot_module/manufacturer)
 	module_flags = BORG_MODULE_ENGINEERING
 
 /obj/item/borg/upgrade/rped/action(mob/living/silicon/robot/R, user = usr)
@@ -697,3 +697,34 @@ as performing this in action() will cause the upgrade to end up in the borg inst
 	action.UpdateButtonIcon()
 
 	return TRUE
+	
+// unique manufacturer expansions
+
+/obj/item/borg/upgrade/laserprints
+	name = "manufacturer cyborg laser-weaponry blueprints"
+	desc = "A series of blueprints that allow Manufacturer cyborgs to print a variety of laser weapons."
+	icon = 'icons/obj/device.dmi'
+	icon_state = "cyborg_upgrade3"
+	require_module = TRUE
+	module_type = list(/obj/item/robot_module/manufacturer)
+	module_flags = BORG_MODULE_ENGINEERING
+
+/obj/item/borg/upgrade/laserprints/action(mob/living/silicon/robot/R, user = usr)
+	. = ..()
+	if(.)
+
+		var/obj/item/rsf/cyborg/energy/LP = locate() in R
+		if(LP)
+			to_chat(user, "<span class='warning'>This unit is already equipped with a laser-printer module.</span>")
+			return FALSE
+
+		LP = new(R.module)
+		R.module.basic_modules += LP
+		R.module.add_module(LP, FALSE, TRUE)
+
+/obj/item/borg/upgrade/laserprints/deactivate(mob/living/silicon/robot/R, user = usr)
+	. = ..()
+	if (.)
+		var/obj/item/rsf/cyborg/energy/LP = locate() in R.module
+		if (LP)
+			R.module.remove_module(LP, TRUE)
