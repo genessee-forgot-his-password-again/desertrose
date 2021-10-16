@@ -921,6 +921,7 @@
 	moduleselect_icon = "engineer"
 	magpulsing = TRUE
 	hat_offset = -4
+
 /obj/item/robot_module/assaultron
 	name = "Assaultron"
 	basic_modules = list( //Security borg
