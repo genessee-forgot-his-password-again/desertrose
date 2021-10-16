@@ -387,3 +387,62 @@ RSF
 			to_chat(user, "Dispensing Electronic Parts...")
 			new /obj/item/stack/crafting/electronicparts/five(T)
 			use_matter(300, user)
+			
+// laser weapon synth (upgrade only)
+
+/obj/item/rsf/cyborg/energy
+	name = "\improper Wattz LasPrinter Beta"
+	desc = "An experimental device that can rapidly print various laser weapons, MF cells, and energy cells."
+
+/obj/item/rsf/cyborg/energy/attack_self(mob/user)
+	playsound(src.loc, 'sound/effects/pop.ogg', 50, 0)
+	switch(mode)
+		if(6)
+			mode = 1
+			to_chat(user, "Changed dispensing mode to 'Civilian Laser Pistol'")
+		if(1)
+			mode = 2
+			to_chat(user, "Changed dispensing mode to 'Military Laser Pistol'")
+		if(2)
+			mode = 3
+			to_chat(user, "Changed dispensing mode to 'Civilian Laser Rifle'")
+		if(3)
+			mode = 4
+			to_chat(user, "Changed dispensing mode to 'Military Laser Rifle'")
+		if(4)
+			mode = 5
+			to_chat(user, "Changed dispensing mode to 'Energy Charge Pack'")
+		if(5)
+			mode = 6
+			to_chat(user, "Changed dispensing mode to 'Microfusion Cell'")
+
+/obj/item/rsf/cyborg/energy/afterattack(atom/A, mob/user, proximity)
+	. = ..()
+
+	var/turf/T = get_turf(A)
+	playsound(src.loc, 'sound/machines/click.ogg', 10, 1)
+	switch(mode)
+		if(1)
+			to_chat(user, "Dispensing Civilian Laser Pistol...")
+			new /obj/item/gun/energy/laser/wattz(T)
+			use_matter(250, user)
+		if(2)
+			to_chat(user, "Dispensing Military Laser Pistol...")
+			new /obj/item/ammo_box/magazine/m556/rifle/small(T)
+			use_matter(600, user)
+		if(3)
+			to_chat(user, "Dispensing Civilian Laser Rifle...")
+			new /obj/item/gun/energy/laser/wattz2k(T)
+			use_matter(750, user)
+		if(4)
+			to_chat(user, "Dispensing Military Laser Rifle..")
+			new /obj/item/gun/energy/laser/aer9(T)
+			use_matter(1000, user)
+		if(4)
+			to_chat(user, "Dispensing Energy Charge Pack..")
+			new /obj/item/stock_parts/cell/ammo/ec(T)
+			use_matter(100, user)
+		if(4)
+			to_chat(user, "Dispensing Microfusion Cell..")
+			new /obj/item/stock_parts/cell/ammo/mfc(T)
+			use_matter(200, user)
