@@ -840,6 +840,15 @@
 	materials = list(/datum/material/iron=7500, /datum/material/glass=7500, /datum/material/silver=1000, /datum/material/gold=1000, /datum/material/titanium=2000)
 	construction_time = 100
 	category = list("Cyborg Upgrade Modules")
+	
+/datum/design/borg_upgrade_lasprints
+	name = "Cyborg Upgrade (Laser Weapon Production Schematics)"
+	id = "borg_upgrade_lasprints"
+	build_type = MECHFAB
+	build_path = /obj/item/borg/upgrade/laserprints
+	materials = list(/datum/material/iron=8000, /datum/material/glass=10000, /datum/material/silver=1500, /datum/material/gold=3000, /datum/material/titanium=1000, /datum/material/plasma=1500)
+	construction_time = 200
+	category = list("Cyborg Upgrade Modules")
 
 //Misc
 /datum/design/mecha_tracking
