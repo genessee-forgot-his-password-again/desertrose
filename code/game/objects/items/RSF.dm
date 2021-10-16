@@ -184,3 +184,123 @@ RSF
 	else
 		matter--
 	cooldown = world.time + cooldowndelay
+	
+// Crafter Borg synthesizers
+
+// basic pistol synth
+
+/obj/item/rsf/cyborg/pistol
+	name = "\improper Craft-o-Tron 'PistolWhipper 1000'"
+	desc = "A gun that prints smaller guns using a robots onboard power supply."
+
+/obj/item/rsf/cyborg/pistol/attack_self(mob/user)
+	playsound(src.loc, 'sound/effects/pop.ogg', 50, 0)
+	switch(mode)
+		if(6)
+			mode = 1
+			to_chat(user, "Changed dispensing mode to '9mm Handgun'")
+		if(1)
+			mode = 2
+			to_chat(user, "Changed dispensing mode to '9mm Magazine'")
+		if(2)
+			mode = 3
+			to_chat(user, "Changed dispensing mode to '.45 Handgun'")
+		if(3)
+			mode = 4
+			to_chat(user, "Changed dispensing mode to '.45 Magazine'")
+		if(4)
+			mode = 5
+			to_chat(user, "Changed dispensing mode to '.38 Revolver'")
+		if(5)
+			mode = 6
+			to_chat(user, "Changed dispensing mode to '.38 Clip'")
+
+/obj/item/rsf/cyborg/pistol/afterattack(atom/A, mob/user, proximity)
+	. = ..()
+
+	var/turf/T = get_turf(A)
+	playsound(src.loc, 'sound/machines/click.ogg', 10, 1)
+	switch(mode)
+		if(1)
+			to_chat(user, "Dispensing 9mm Handgun...")
+			new /obj/item/gun/ballistic/automatic/pistol/ninemil(T)
+			use_matter(100, user)
+		if(2)
+			to_chat(user, "Dispensing 9mm Magazine...")
+			new /obj/item/ammo_box/magazine/m9mm(T)
+			use_matter(20, user)
+		if(3)
+			to_chat(user, "Dispensing .45 Handgun...")
+			new /obj/item/gun/ballistic/automatic/pistol/m1911(T)
+			use_matter(200, user)
+		if(4)
+			to_chat(user, "Dispensing .45 Magazine...")
+			new /obj/item/ammo_box/magazine/m45(T)
+			use_matter(25, user)
+		if(5)
+			to_chat(user, "Dispensing .38 Revolver...")
+			new /obj/item/gun/ballistic/revolver/police(T)
+			use_matter(250, user)
+		if(6)
+			to_chat(user, "Dispensing .38 Clip...")
+			new /obj/item/ammo_box/c38(T)
+			use_matter(10, user)
+			
+// crafting material synth
+			
+/obj/item/rsf/cyborg/parts
+	name = "\improper RobCo ScrapMatic Deluxe"
+	desc = "A tool that synthesizes raw materials from electricity using a robots onboard power supply."
+
+/obj/item/rsf/cyborg/parts/attack_self(mob/user)
+	playsound(src.loc, 'sound/effects/pop.ogg', 50, 0)
+	switch(mode)
+		if(6)
+			mode = 1
+			to_chat(user, "Changed dispensing mode to 'Steel Sheets'")
+		if(1)
+			mode = 2
+			to_chat(user, "Changed dispensing mode to 'Glass Sheets'")
+		if(2)
+			mode = 3
+			to_chat(user, "Changed dispensing mode to 'Gunpowder Pouches'")
+		if(3)
+			mode = 4
+			to_chat(user, "Changed dispensing mode to 'Metal Parts'")
+		if(4)
+			mode = 5
+			to_chat(user, "Changed dispensing mode to 'High-Quality Metal Parts'")
+		if(5)
+			mode = 6
+			to_chat(user, "Changed dispensing mode to 'Electronic Parts'")
+
+/obj/item/rsf/cyborg/parts/afterattack(atom/A, mob/user, proximity)
+	. = ..()
+
+	var/turf/T = get_turf(A)
+	playsound(src.loc, 'sound/machines/click.ogg', 10, 1)
+	switch(mode)
+		if(1)
+			to_chat(user, "Dispensing Steel Sheets...")
+			new /obj/item/stack/sheet/metal/ten(T)
+			use_matter(100, user)
+		if(2)
+			to_chat(user, "Dispensing Glass Sheets...")
+			new /obj/item/stack/sheet/glass/ten(T)
+			use_matter(50, user)
+		if(3)
+			to_chat(user, "Dispensing Gunpowder Pouches...")
+			new /obj/item/stack/crafting/powder/ten(T)
+			use_matter(200, user)
+		if(4)
+			to_chat(user, "Dispensing Metal Parts...")
+			new /obj/item/stack/crafting/metalparts/five(T)
+			use_matter(250, user)
+		if(5)
+			to_chat(user, "Dispensing High-Quality Metal Parts...")
+			new /obj/item/stack/crafting/goodparts/five(T)
+			use_matter(500, user)
+		if(6)
+			to_chat(user, "Dispensing Electronic Parts...")
+			new /obj/item/stack/crafting/electronicparts/five(T)
+			use_matter(300, user)
