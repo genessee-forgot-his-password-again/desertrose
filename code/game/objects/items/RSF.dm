@@ -388,6 +388,72 @@ RSF
 			new /obj/item/stack/crafting/electronicparts/five(T)
 			use_matter(300, user)
 			
+// basic ammo synth
+
+/obj/item/rsf/cyborg/ammo
+	name = "\improper BulletBuddy Builder Alpha"
+	desc = "A toolset capable of rapidly fabricating and packaging ballistic ammunition of various types."
+
+/obj/item/rsf/cyborg/ammo/attack_self(mob/user)
+	playsound(src.loc, 'sound/effects/pop.ogg', 50, 0)
+	switch(mode)
+		if(7)
+			mode = 1
+			to_chat(user, "Changed dispensing mode to '9mm Standard Ammunition'")
+		if(1)
+			mode = 2
+			to_chat(user, "Changed dispensing mode to '10mm Standard Ammunition'")
+		if(2)
+			mode = 3
+			to_chat(user, "Changed dispensing mode to '.38 Standard Ammunition'")
+		if(3)
+			mode = 4
+			to_chat(user, "Changed dispensing mode to '.45 Standard Ammunition'")
+		if(4)
+			mode = 5
+			to_chat(user, "Changed dispensing mode to 'Shotgun Slugs'")
+		if(5)
+			mode = 6
+			to_chat(user, "Changed dispensing mode to '5.56mm Standard Ammunition'")
+		if(6)
+			mode = 7
+			to_chat(user, "Changed dispensing mode to '7.62mm Standard Ammunition'")
+
+/obj/item/rsf/cyborg/ammo/afterattack(atom/A, mob/user, proximity)
+	. = ..()
+
+	var/turf/T = get_turf(A)
+	playsound(src.loc, 'sound/machines/click.ogg', 10, 1)
+	switch(mode)
+		if(1)
+			to_chat(user, "Dispensing 9mm Standard Ammunition...")
+			new /obj/item/ammo_box/c9mm(T)
+			use_matter(50, user)
+		if(2)
+			to_chat(user, "Dispensing 10mm Standard Ammunition...")
+			new /obj/item/ammo_box/c10mm(T)
+			use_matter(80, user)
+		if(3)
+			to_chat(user, "Dispensing .38 Standard Ammunition...")
+			new /obj/item/ammo_box/box38(T)
+			use_matter(50, user)
+		if(4)
+			to_chat(user, "Dispensing .45 Standard Ammunition...")
+			new /obj/item/ammo_box/c45(T)
+			use_matter(70, user)
+		if(5)
+			to_chat(user, "Dispensing Shotgun Slugs...")
+			new /obj/item/storage/box/lethalslugs(T)
+			use_matter(80, user)
+		if(6)
+			to_chat(user, "Dispensing 5.56mm Standard Ammunition...")
+			new /obj/item/ammo_box/a556(T)
+			use_matter(60, user)
+		if(7)
+			to_chat(user, "Dispensing 7.62mm Standard Ammunition...")
+			new /obj/item/ammo_box/a762box(T)
+			use_matter(80, user)
+			
 // laser weapon synth (upgrade only)
 
 /obj/item/rsf/cyborg/energy
