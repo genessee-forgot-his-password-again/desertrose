@@ -871,28 +871,56 @@
 			return FALSE
 	return ..()
 	
-// Manufacturer Bot - very, very poorly armed but can print a plethora of objects for humans; maybe roll Service into this and add a food synthesizer??
+// Manufacturer Bot - very, very poorly armed but can print a plethora of objects for humans and build crap
+// engineering module rolled in here too
 
 /obj/item/robot_module/manufacturer
 	name = "Manufacturer"
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
+		
+		/obj/item/electroadaptive_pseudocircuit,
 		/obj/item/stack/sheet/metal/cyborg,
-		/obj/item/stack/rods/cyborg,
 		/obj/item/stack/sheet/glass/cyborg,
-		/obj/item/rsf/cyborg,
+		/obj/item/stack/sheet/rglass/cyborg,
+		/obj/item/stack/rods/cyborg,
+		/obj/item/stack/tile/plasteel/cyborg,
+		/obj/item/stack/cable_coil/cyborg,
+		
 		/obj/item/rsf/cyborg/parts,
 		/obj/item/rsf/cyborg/pistol,
 		/obj/item/rsf/cyborg/shotgun,
-		/obj/item/rsf/cyborg/rifle)
-	emag_modules = list(/obj/item/melee/transforming/energy/sword/cyborg) // todo: add illegal drug synthesizer or something
+		/obj/item/rsf/cyborg/rifle,
+		
+		/obj/item/borg/sight/meson,
+		/obj/item/construction/rcd/borg,
+		/obj/item/pipe_dispenser,
+		/obj/item/extinguisher,
+		/obj/item/weldingtool/largetank/cyborg,
+		/obj/item/screwdriver/cyborg,
+		/obj/item/wrench/cyborg,
+		/obj/item/crowbar/cyborg,
+		/obj/item/wirecutters/cyborg,
+		/obj/item/multitool/cyborg,
+		/obj/item/t_scanner,
+		/obj/item/analyzer,
+		
+		/obj/item/storage/part_replacer/cyborg,
+		/obj/item/weapon/gripper,
+		
+		/obj/item/lightreplacer/cyborg,
+		/obj/item/geiger_counter/cyborg,
+		/obj/item/assembly/signaler/cyborg,
+		/obj/item/areaeditor/blueprints/cyborg)
+	emag_modules = list(/obj/item/gun/energy/laser/pistol/cyborg) // technically for assaultrons but fuck you
 	ratvar_modules = list(
 		/obj/item/clockwork/slab/cyborg,
 		/obj/item/clockwork/weapon/ratvarian_spear,
 		/obj/item/clockwork/replica_fabricator/cyborg)
-	moduleselect_icon = "standard"
-	hat_offset = -3
-
+	cyborg_base_icon = "engineer"
+	moduleselect_icon = "engineer"
+	magpulsing = TRUE
+	hat_offset = -4
 /obj/item/robot_module/assaultron
 	name = "Assaultron"
 	basic_modules = list( //Security borg
