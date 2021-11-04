@@ -58,6 +58,9 @@
 	max_amount = 200
 	full_w_class = WEIGHT_CLASS_SMALL
 	merge_type = /obj/item/stack/crafting/powder
+	
+/obj/item/stack/crafting/powder/ten
+	amount = 10
 
 GLOBAL_LIST_INIT(powder_recipes, list ( \
 	new/datum/stack_recipe("Scavenge blackpowder", /obj/item/reagent_containers/glass/bottle/blackpowder, 100),\
